@@ -1,0 +1,13 @@
+{
+    "name": "meu-projeto-download",
+    "version": "1.0.0",
+    "main": "api/download.js",
+    "scripts": {
+      "start": "node api/download.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "ytdl-core": "^4.9.1"
+    }
+  }
+  
