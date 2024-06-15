@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         message += `Total do Pedido: R$${total.toFixed(2)}`;
 
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=SEU_NUMERO&text=${message}`;
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=+5511988896517&text=${message}`;
         window.open(whatsappUrl, '_blank');
     });
 
