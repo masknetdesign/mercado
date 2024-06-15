@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Online</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM6cQ6VYXuO42G/U7FiuM2yDVo6Au8cMj11Yx3b" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Mercado Online</h1>
+        <div class="admin-section">
+            <h2>Administração de Produtos</h2>
+            <form id="productForm">
+                <input type="text" id="productName" placeholder="Nome do Produto" required>
+                <input type="number" id="productPrice" placeholder="Preço do Produto" required>
+                <button type="submit">Adicionar Produto</button>
+            </form>
+            <h3>Lista de Produtos</h3>
+            <ul id="productList"></ul>
+        </div>
+        <div class="user-section">
+            <h2>Faça seu Pedido</h2>
+            <form id="orderForm">
+                <select id="productSelect" required>
+                    <option value="">Selecione um Produto</option>
+                </select>
+                <input type="number" id="orderQuantity" placeholder="Quantidade" required>
+                <button type="submit">Adicionar ao Pedido</button>
+            </form>
+            <h3>Pedido</h3>
+            <ul id="orderList"></ul>
+            <div id="orderTotal">Total: R$0.00</div>
+            <button id="completeOrder">Concluir Pedido</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
