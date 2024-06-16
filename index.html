@@ -4,76 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado Online</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> <!-- Biblioteca de ícones do Google Material Icons -->
     <style>
-        /* Estilos CSS personalizados */
+        /* Estilos CSS personalizados para um aplicativo de mercado */
+        /* Estilos específicos já incluídos no arquivo styles.css */
+
+        /* Exemplo adicional de estilo local */
         body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
             font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f3f4f6; /* Cor de fundo principal */
+            color: #333; /* Cor do texto principal */
         }
 
-        .container {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .user-section {
-            margin-bottom: 20px;
-        }
-
-        .user-info {
-            margin-bottom: 10px;
-        }
-
-        footer {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: #f8f9fa;
-            padding: 10px 0;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        footer i {
-            font-size: 24px;
-            color: #007bff;
-            margin: 0 20px; /* Espaçamento entre os ícones */
-            cursor: pointer;
-        }
-
-        footer i:hover {
-            color: #0056b3;
-        }
-
-        .product-list-container {
-            display: none; /* Inicialmente escondido */
-            margin-top: 20px;
-        }
-
+        /* Estilo para o cabeçalho */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Z-index alto para garantir que fique acima de outros elementos */
+            background-color: #28a745; /* Cor de fundo azul para o cabeçalho */
+            color: #fff; /* Cor do texto no cabeçalho */
+            text-align: center;
+            padding: 10px;
         }
 
         .header h1 {
             margin: 0;
+            font-size: 24px;
+        }
+
+        .header .material-icons {
+            font-size: 24px;
+            vertical-align: middle;
+        }
+
+        /* Estilo para os botões */
+    button {
+        background-color: #28a745; /* Verde para botões */
+        color: #fff; /* Texto branco */
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease; /* Transição suave de cor */
+    }
+
+    /* Estilo para os inputs */
+    input[type="number"],
+    select {
+        padding: 10px;
+        border: 1px solid #ced4da; /* Cinza claro para borda */
+        border-radius: 4px;
+        width: 100%;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+        /* Estilo para o rodapé */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Z-index alto para garantir que fique acima de outros elementos */
+            background-color: #28a745; /* Cor de fundo azul para o rodapé */
+            color: #fff; /* Cor do texto no rodapé */
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        button:hover {
+        background-color: #218838; /* Tom mais escuro de verde ao passar o mouse */
+    }
+
+        footer i {
+            font-size: 24px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        footer i:hover {
+            opacity: 0.8;
+        }
+
+        /* Mídia para dispositivos menores */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .user-section,
+            .product-list-container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 10px;
+            }
+
+            footer {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            footer i {
+                margin: 10px;
+            }
+
+            #productList li {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Cabeçalho -->
-    <div class="header">
+    <header class="header">
         <h1>Mercado Online</h1>
         <i class="material-icons" id="logoutIcon">exit_to_app</i>
-    </div>
+    </header>
 
     <div class="container">
         <!-- Seção do usuário -->
@@ -118,7 +173,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
-    <script src="scripts.js"></script>
+    <script src="scripts.js"></script> <!-- Arquivo com scripts JavaScript personalizado -->
 
 </body>
 </html>
