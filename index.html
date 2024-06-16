@@ -7,16 +7,26 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-        /* Adicione seu CSS personalizado aqui */
+        /* Estilos CSS personalizados */
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             margin: 0;
+            font-family: Arial, sans-serif;
         }
 
         .container {
             flex: 1;
+            padding: 20px;
+        }
+
+        .user-section {
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            margin-bottom: 10px;
         }
 
         footer {
@@ -43,12 +53,36 @@
             display: none; /* Inicialmente escondido */
             margin-top: 20px;
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Cabeçalho -->
+    <div class="header">
         <h1>Mercado Online</h1>
+        <i class="material-icons" id="logoutIcon">exit_to_app</i>
+    </div>
+
+    <div class="container">
+        <!-- Seção do usuário -->
         <div class="user-section">
+            <div class="user-info" id="userInfo">
+                <!-- Texto de boas-vindas e nome do usuário serão inseridos aqui dinamicamente -->
+            </div>
+            
+            <!-- Formulário de pedido -->
             <h2>Faça seu Pedido</h2>
             <form id="orderForm">
                 <select id="productSelect" required>
@@ -57,24 +91,34 @@
                 <input type="number" id="orderQuantity" placeholder="Quantidade" required>
                 <button type="submit">Adicionar ao Pedido</button>
             </form>
+            
+            <!-- Lista de pedidos -->
             <h3>Pedido</h3>
             <ul id="orderList"></ul>
             <div id="orderTotal">Total: R$0.00</div>
             <button id="completeOrder">Concluir Pedido</button>
         </div>
+
+        <!-- Container da lista de produtos -->
         <div class="product-list-container" id="productListContainer">
             <h2>Lista de Produtos</h2>
             <ul id="productList"></ul>
         </div>
     </div>
+
+    <!-- Rodapé com ícones de navegação -->
     <footer>
         <i class="material-icons" id="homeIcon">home</i>
         <i class="material-icons" id="searchIcon">search</i>
         <i class="material-icons" id="orderIcon">shopping_cart</i>
         <i class="material-icons" id="profileIcon">person</i>
     </footer>
+
+    <!-- Scripts do Firebase e JavaScript personalizado -->
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
     <script src="scripts.js"></script>
+
 </body>
 </html>

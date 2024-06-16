@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         messagingSenderId: "247706769451",
         appId: "1:247706769451:web:ce31cd9d0ca22cd267b26e"
     };
+
     // Inicialização do Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
@@ -22,9 +23,79 @@ document.addEventListener('DOMContentLoaded', function() {
     const homeIcon = document.getElementById('homeIcon');
     const orderIcon = document.getElementById('orderIcon');
     const profileIcon = document.getElementById('profileIcon');
+    const userInfo = document.getElementById('userInfo');
+    const loginForm = document.getElementById('loginForm');
+    const cadastroForm = document.getElementById('cadastroForm');
+    const showCadastroLink = document.getElementById('showCadastro');
+    const showLoginLink = document.getElementById('showLogin');
 
     let products = [];
     let order = [];
+
+    // Event listener para exibir formulário de cadastro
+    if (showCadastroLink) {
+        showCadastroLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            cadastroForm.style.display = 'block';
+        });
+    }
+
+    // Event listener para exibir formulário de login
+    if (showLoginLink) {
+        showLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            cadastroForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+    }
+
+    // Event listener para login
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailLogin').value;
+            const password = document.getElementById('passwordLogin').value;
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Login bem sucedido
+                    console.log('Usuário logado:', userCredential.user.email);
+                    window.location.href = 'index.html'; // Redireciona para a página principal
+                })
+                .catch((error) => {
+                    var errorMessage = error.message;
+                    console.error(errorMessage);
+                    alert('Erro ao fazer login. Verifique suas credenciais.');
+                });
+        });
+    }
+
+    // Event listener para cadastro
+    if (cadastroForm) {
+        cadastroForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nomeCadastro').value;
+            const email = document.getElementById('emailCadastro').value;
+            const password = document.getElementById('passwordCadastro').value;
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Cadastro bem sucedido
+                    const user = userCredential.user;
+                    return db.collection('users').doc(user.uid).set({
+                        nome: nome,
+                        email: email
+                    });
+                })
+                .then(() => {
+                    window.location.href = 'index.html'; // Redireciona para a página principal
+                })
+                .catch((error) => {
+                    var errorMessage = error.message;
+                    console.error(errorMessage);
+                    alert('Erro ao cadastrar usuário. Verifique seus dados.');
+                });
+        });
+    }
 
     // Função para carregar produtos do Firebase
     function loadProducts() {
@@ -38,25 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 productSelect.appendChild(option);
             });
         });
-    }
-
-    // Função para atualizar a lista de produtos na interface
-    function updateProductList() {
-        const productList = document.getElementById('productList');
-        if (productList) {
-            productList.innerHTML = '';
-            products.forEach((product) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    ${product.name} - R$${product.price.toFixed(2)}
-                    <span class="actions">
-                        <i class="material-icons edit" data-id="${product.id}">edit</i>
-                        <i class="material-icons delete" data-id="${product.id}">delete</i>
-                    </span>
-                `;
-                productList.appendChild(li);
-            });
-        }
     }
 
     // Função para atualizar a lista de pedidos na interface
@@ -81,6 +133,33 @@ document.addEventListener('DOMContentLoaded', function() {
         orderTotal.textContent = `Total: R$${total.toFixed(2)}`;
     }
 
+    // Função para exibir informações do usuário
+    function showUserInfo(user) {
+        if (user) {
+            db.collection('users').doc(user.uid).get().then((doc) => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    userInfo.innerHTML = `
+                        <p>Bem-vindo(a), ${userData.nome}!</p>
+                        
+                        
+
+                        <p>Seja bem-vindo(a) a nossa Loja!</p>
+                    `;
+                } else {
+                    console.log("Nenhum dado encontrado para o usuário.");
+                }
+            }).catch((error) => {
+                console.log("Erro ao obter dados do usuário:", error);
+            });
+        } else {
+            userInfo.innerHTML = `
+                <p>Bem-vindo(a)!</p>
+                <p>Por favor, faça login para acessar o sistema.</p>
+            `;
+        }
+    }
+
     // Event listener para o formulário de adicionar pedido
     if (orderForm) {
         orderForm.addEventListener('submit', function(e) {
@@ -102,40 +181,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Event listener para o botão de concluir pedido
-if (completeOrder) {
-    completeOrder.addEventListener('click', function() {
-        if (order.length > 0) {
-            // Montar a mensagem para enviar via WhatsApp
-            let message = `🛒 *Meu Pedido*\n\n`;
+    if (completeOrder) {
+        completeOrder.addEventListener('click', function() {
+            if (order.length > 0) {
+                // Montar a mensagem para enviar via WhatsApp
+                let message = `🛒 *Meu Pedido*\n\n`;
 
-            order.forEach((item, index) => {
-                const subtotal = (item.price * item.quantity).toFixed(2);
-                message += `${index + 1}. *${item.name}* - R$${item.price.toFixed(2)} x ${item.quantity} = R$${subtotal}\n`;
-            });
+                order.forEach((item, index) => {
+                    const subtotal = (item.price * item.quantity).toFixed(2);
+                    message += `${index + 1}. *${item.name}* - R$${item.price.toFixed(2)} x ${item.quantity} = R$${subtotal}\n`;
+                });
 
-            message += `\n*Total*: R$${orderTotal.textContent.split(':')[1].trim()}`;
+                message += `\n*Total*: R$${orderTotal.textContent.split(':')[1].trim()}`;
 
-            // Número de telefone para enviar o pedido via WhatsApp
-            const phoneNumber = '+5511988896517'; // Substitua pelo número desejado
+                // Número de telefone para enviar o pedido via WhatsApp
+                const phoneNumber = '+5511988896517'; // Substitua pelo número desejado
 
-            // Formatar a mensagem e o número de telefone para URL
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+                // Formatar a mensagem e o número de telefone para URL
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
-            // Abrir WhatsApp com a mensagem preenchida e o número de telefone
-            window.open(whatsappURL, '_blank');
-            
-            // Limpar o pedido após enviar
-            order = [];
-            updateOrderList();
-        } else {
-            alert('Adicione produtos ao pedido antes de concluir.');
-        }
-    });
-}
-
-
-
+                // Abrir WhatsApp com a mensagem preenchida e o número de telefone
+                window.open(whatsappURL, '_blank');
+                
+                // Limpar o pedido após enviar
+                order = [];
+                updateOrderList();
+            } else {
+                alert('Adicione produtos ao pedido antes de concluir.');
+            }
+        });
+    }
 
     // Event listener para o ícone de busca
     if (searchIcon) {
@@ -151,11 +227,6 @@ if (completeOrder) {
 
     // Funções de redirecionamento dos ícones do rodapé
     function addNavigationListeners() {
-        if (homeIcon) {
-            homeIcon.addEventListener('click', function() {
-                window.location.href = 'index.html';
-            });
-        }
         if (orderIcon) {
             orderIcon.addEventListener('click', function() {
                 window.location.href = 'order.html';
@@ -185,6 +256,30 @@ if (completeOrder) {
             order = order.filter(item => item.id !== itemId);
         }
         updateOrderList();
+    });
+
+    // Event listener para o ícone de logout
+if (logoutIcon) {
+    logoutIcon.addEventListener('click', function() {
+        firebase.auth().signOut().then(() => {
+            // Redirecionar para a página de login após logout
+            window.location.href = 'login.html';
+        }).catch((error) => {
+            console.error('Erro ao fazer logout:', error);
+        });
+    });
+}
+
+
+    // Verificar o estado de autenticação do usuário ao carregar a página
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // Usuário está autenticado
+            showUserInfo(user);
+        } else {
+            // Usuário não está autenticado, redireciona para a página de login
+            window.location.href = 'login.html';
+        }
     });
 
     // Inicialização
