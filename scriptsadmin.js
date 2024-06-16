@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const popupProductPriceInput = document.getElementById('popupProductPriceInput');
     const updateButton = document.getElementById('updateButton');
     const cancelButton = document.getElementById('cancelButton');
+    const sinoIcone = document.querySelector('.material-icons'); // Seleciona o ícone de sino
 
     let products = [];
 
@@ -121,6 +122,27 @@ document.addEventListener('DOMContentLoaded', function() {
             editPopup.classList.remove('active');
         });
     }
+
+    // Monitorar alterações nos pedidos (exemplo simulado)
+    function monitorarNovosPedidos() {
+        setInterval(() => {
+            // Lógica para verificar se há novos pedidos no sistema
+            const novosPedidos = true; // Suponha que haja um novo pedido
+
+            if (novosPedidos) {
+                mostrarAlertaNovoPedido();
+            }
+        }, 5000); // Verifica a cada 5 segundos (ajuste conforme necessário)
+    }
+
+    // Função para atualizar o ícone de sino com um alerta visual
+    function mostrarAlertaNovoPedido() {
+        // Adicione uma classe CSS para estilizar o alerta visual no ícone
+        sinoIcone.classList.add('alerta-novo-pedido');
+    }
+
+    // Chamada para iniciar o monitoramento de novos pedidos
+    monitorarNovosPedidos();
 
     // Função para atualizar a lista de produtos na interface
     function updateProductList() {

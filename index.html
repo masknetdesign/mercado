@@ -66,29 +66,30 @@
 
         /* Estilo para o rodapé */
         footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
             position: fixed;
             bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000; /* Z-index alto para garantir que fique acima de outros elementos */
-            background-color: #28a745; /* Cor de fundo azul para o rodapé */
-            color: #fff; /* Cor do texto no rodapé */
-            text-align: center;
+            background-color: #ffffff; /* Fundo branco para o rodapé */
             padding: 10px 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elevação */
         }
 
         button:hover {
         background-color: #218838; /* Tom mais escuro de verde ao passar o mouse */
     }
 
-        footer i {
-            font-size: 24px;
-            margin: 0 10px;
+    footer i {
+            font-size: 28px;
+            color: #333; /* Cor dos ícones */
             cursor: pointer;
+            transition: opacity 0.3s ease; /* Transição suave de opacidade */
         }
 
         footer i:hover {
-            opacity: 0.8;
+            opacity: 0.7; /* Opacidade reduzida ao passar o mouse */
         }
 
         /* Mídia para dispositivos menores */
@@ -122,6 +123,25 @@
                 padding: 15px;
             }
         }
+
+        .alerta-novo-pedido {
+    /* Adicione estilos para o alerta visual, como mudança de cor ou ícone */
+    color: #dc3545; /* Vermelho */
+    animation: pulse 1s infinite; /* Exemplo de animação para tornar o alerta mais visível */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
     </style>
 </head>
 <body>

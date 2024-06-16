@@ -15,10 +15,17 @@
             min-height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #f3f4f6; /* Cor de fundo suave */
         }
 
         .profile-container {
             text-align: center;
+            background-color: #ffffff; /* Fundo branco para o container do perfil */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para elevação */
+            max-width: 400px; /* Largura máxima do container */
+            margin: 20px;
         }
 
         .profile-pic {
@@ -27,28 +34,54 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave para a foto do perfil */
         }
 
         .profile-name {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            color: #333; /* Cor do texto principal */
         }
 
-        
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background-color: #ffffff; /* Fundo branco para o rodapé */
+            padding: 10px 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elevação */
+        }
+
+        footer i {
+            font-size: 28px;
+            color: #333; /* Cor dos ícones */
+            cursor: pointer;
+            transition: opacity 0.3s ease; /* Transição suave de opacidade */
+        }
+
+        footer i:hover {
+            opacity: 0.7; /* Opacidade reduzida ao passar o mouse */
+        }
     </style>
 </head>
 <body>
     <div class="profile-container">
-        <img src="" alt="Foto do Usuário" id="profilePic" class="profile-pic">
-        <div id="profileName" class="profile-name">Nome do Usuário</div>
+        <img src="caminho/para/sua/imagem.jpg" alt="Foto do Usuário" class="profile-pic" id="profilePic">
+        <div class="profile-name" id="profileName">Nome do Usuário</div>
     </div>
+
     <footer>
-        <i class="material-icons" id="homeIcon">home</i>
-        <i class="material-icons" id="searchIcon">search</i>
-        <i class="material-icons" id="orderIcon">shopping_cart</i>
-        <i class="material-icons" id="profileIcon">person</i>
+        <i class="material-icons">home</i>
+        <i class="material-icons">search</i>
+        <i class="material-icons">shopping_cart</i>
+        <i class="material-icons">person</i>
     </footer>
+
+    <!-- Scripts do Firebase e JavaScript personalizado -->
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>

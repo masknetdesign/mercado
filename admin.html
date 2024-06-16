@@ -3,15 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administração de Produtos</title>
+    <title>Admin</title>
     <!-- Incluir biblioteca do Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Estilos CSS personalizados -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos adicionais */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-top: 80px; /* Para ajustar o espaço do cabeçalho fixo */
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .header .material-icons {
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .header .material-icons:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
+    <!-- Cabeçalho fixo com ícone de sino -->
+    <header class="header">
+        <h1>Admin</h1>
+        <!-- Ícone de sino para alertas -->
+        <i class="material-icons">notifications</i>
+    </header>
+
     <div class="container">
-        <h1>Administração de Produtos</h1>
+        <!-- Conteúdo principal -->
+        <h1>Admin</h1>
         <!-- Formulário para adicionar/editar produto -->
         <form id="productForm" class="form">
             <input type="hidden" id="productId" value="">
