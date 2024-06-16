@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .profile-container {
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="" alt="Foto do Usuário" id="profilePic" class="profile-pic">
+        <div id="profileName" class="profile-name">Nome do Usuário</div>
+    </div>
+    <footer>
+        <i class="material-icons" id="homeIcon">home</i>
+        <i class="material-icons" id="searchIcon">search</i>
+        <i class="material-icons" id="orderIcon">shopping_cart</i>
+        <i class="material-icons" id="profileIcon">person</i>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

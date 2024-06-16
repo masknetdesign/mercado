@@ -5,22 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado Online</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM6cQ6VYXuO42G/U7FiuM2yDVo6Au8cMj11Yx3b" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        /* Adicione seu CSS personalizado aqui */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        footer i {
+            font-size: 24px;
+            color: #007bff;
+            margin: 0 20px; /* Espaçamento entre os ícones */
+            cursor: pointer;
+        }
+
+        footer i:hover {
+            color: #0056b3;
+        }
+
+        .product-list-container {
+            display: none; /* Inicialmente escondido */
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Mercado Online</h1>
-        <div class="admin-section">
-            <h2>Administração de Produtos</h2>
-            <form id="productForm">
-                <input type="text" id="productName" placeholder="Nome do Produto" required>
-                <input type="number" id="productPrice" placeholder="Preço do Produto" required>
-                <button type="submit">Adicionar Produto</button>
-            </form>
-            <h3>Lista de Produtos</h3>
-            <ul id="productList"></ul>
-        </div>
         <div class="user-section">
             <h2>Faça seu Pedido</h2>
             <form id="orderForm">
@@ -35,7 +62,19 @@
             <div id="orderTotal">Total: R$0.00</div>
             <button id="completeOrder">Concluir Pedido</button>
         </div>
+        <div class="product-list-container" id="productListContainer">
+            <h2>Lista de Produtos</h2>
+            <ul id="productList"></ul>
+        </div>
     </div>
+    <footer>
+        <i class="material-icons" id="homeIcon">home</i>
+        <i class="material-icons" id="searchIcon">search</i>
+        <i class="material-icons" id="orderIcon">shopping_cart</i>
+        <i class="material-icons" id="profileIcon">person</i>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

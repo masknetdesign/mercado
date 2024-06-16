@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração de Produtos</title>
+    <!-- Incluir biblioteca do Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Estilos CSS personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Administração de Produtos</h1>
+        <!-- Formulário para adicionar/editar produto -->
+        <form id="productForm" class="form">
+            <input type="hidden" id="productId" value="">
+            <input type="text" id="productName" placeholder="Nome do Produto" required>
+            <input type="number" id="productPrice" placeholder="Preço" step="0.01" required>
+            <button type="submit">Adicionar/Editar Produto</button>
+        </form>
+        <!-- Lista de produtos -->
+        <ul id="productList" class="list"></ul>
+    </div>
+
+    <!-- Pop-up para editar produto -->
+    <div id="editPopup" class="popup">
+        <h2>Editar Produto</h2>
+        <form id="editForm">
+            <input type="hidden" id="popupProductIdInput">
+            <input type="text" id="popupProductNameInput" placeholder="Nome do Produto" required>
+            <input type="number" id="popupProductPriceInput" placeholder="Preço" step="0.01" required>
+            <button type="button" id="updateButton">Atualizar</button>
+        </form>
+    </div>
+
+    <!-- Firebase SDK e configuração -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
+    <!-- Script personalizado -->
+    <script src="scriptsadmin.js"></script>
+</body>
+</html>
