@@ -4,67 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado Online</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo de estilos CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> <!-- Biblioteca de ícones do Google Material Icons -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-        /* Estilos CSS personalizados para um aplicativo de mercado */
-        /* Estilos específicos já incluídos no arquivo styles.css */
-
-        /* Exemplo adicional de estilo local */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f3f4f6; /* Cor de fundo principal */
-            color: #333; /* Cor do texto principal */
+            background-color: #f3f4f6;
+            color: #333;
         }
-
-        /* Estilo para o cabeçalho */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000; /* Z-index alto para garantir que fique acima de outros elementos */
-            background-color: #28a745; /* Cor de fundo azul para o cabeçalho */
-            color: #fff; /* Cor do texto no cabeçalho */
+            z-index: 1000;
+            background-color: #28a745;
+            color: #fff;
             text-align: center;
             padding: 10px;
         }
-
         .header h1 {
             margin: 0;
             font-size: 24px;
             color: white;
         }
-
         .header .material-icons {
             font-size: 24px;
             vertical-align: middle;
         }
-
-        /* Estilo para os botões */
-    button {
-        background-color: #28a745; /* Verde para botões */
-        color: #fff; /* Texto branco */
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s ease; /* Transição suave de cor */
-    }
-
-    /* Estilo para os inputs */
-    input[type="number"],
-    select {
-        padding: 10px;
-        border: 1px solid #ced4da; /* Cinza claro para borda */
-        border-radius: 4px;
-        width: 100%;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-    }
-
-        /* Estilo para o rodapé */
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="number"],
+        select {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
         footer {
             display: flex;
             justify-content: space-around;
@@ -72,41 +58,33 @@
             width: 100%;
             position: fixed;
             bottom: 0;
-            background-color: #ffffff; /* Fundo branco para o rodapé */
+            background-color: #ffffff;
             padding: 10px 0;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elevação */
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
         }
-
         button:hover {
-        background-color: #218838; /* Tom mais escuro de verde ao passar o mouse */
-    }
-
-    footer i {
+            background-color: #218838;
+        }
+        footer i {
             font-size: 28px;
-            color: #333; /* Cor dos ícones */
+            color: #333;
             cursor: pointer;
-            transition: opacity 0.3s ease; /* Transição suave de opacidade */
+            transition: opacity 0.3s ease;
         }
-
         footer i:hover {
-            opacity: 0.7; /* Opacidade reduzida ao passar o mouse */
+            opacity: 0.7;
         }
-
-        /* Mídia para dispositivos menores */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
             }
-
             .user-section,
             .product-list-container {
                 padding: 15px;
             }
-
             .header {
                 padding: 10px;
             }
-
             footer {
                 flex-direction: row;
                 justify-content: space-around;
@@ -114,51 +92,55 @@
                 text-align: center;
                 padding: 10px 0;
             }
-
             footer i {
                 margin: 10px;
             }
-
             #productList li {
                 padding: 15px;
             }
         }
-
         .alerta-novo-pedido {
-    /* Adicione estilos para o alerta visual, como mudança de cor ou ícone */
-    color: #dc3545; /* Vermelho */
-    animation: pulse 1s infinite; /* Exemplo de animação para tornar o alerta mais visível */
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
+            color: #dc3545;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <!-- Cabeçalho -->
     <header class="header">
         <h1>Mercado Online</h1>
         <i class="material-icons" id="logoutIcon">exit_to_app</i>
     </header>
 
     <div class="container">
-        <!-- Seção do usuário -->
         <div class="user-section">
-            <div class="user-info" id="userInfo">
-                <!-- Texto de boas-vindas e nome do usuário serão inseridos aqui dinamicamente -->
-            </div>
-            
-            <!-- Formulário de pedido -->
+            <div class="user-info" id="userInfo"></div>
             <h2>Faça seu Pedido</h2>
             <form id="orderForm">
                 <select id="productSelect" required>
@@ -167,34 +149,38 @@
                 <input type="number" id="orderQuantity" placeholder="Quantidade" required>
                 <button type="submit">Adicionar ao Pedido</button>
             </form>
-            
-            <!-- Lista de pedidos -->
             <h3>Pedido</h3>
             <ul id="orderList"></ul>
             <div id="orderTotal">Total: R$0.00</div>
             <button id="completeOrder">Concluir Pedido</button>
         </div>
-
-        <!-- Container da lista de produtos -->
         <div class="product-list-container" id="productListContainer">
             <h2>Lista de Produtos</h2>
             <ul id="productList"></ul>
         </div>
     </div>
-
-    <!-- Rodapé com ícones de navegação -->
     <footer>
         <i class="material-icons" id="homeIcon">home</i>
         <i class="material-icons" id="searchIcon">search</i>
         <i class="material-icons" id="orderIcon">shopping_cart</i>
         <i class="material-icons" id="profileIcon">person</i>
     </footer>
-
-    <!-- Scripts do Firebase e JavaScript personalizado -->
+    <div id="addressModal" class="modal">
+        <div class="modal-content">
+            <h2>Endereço de Entrega</h2>
+            <form id="addressForm">
+                <input type="text" id="name" placeholder="Seu nome" required>
+                <input type="text" id="street" placeholder="Nome da Rua" required>
+                <input type="number" id="houseNumber" placeholder="Número da Casa" required>
+                <input type="text" id="neighborhood" placeholder="Bairro" required>
+                <input type="text" id="postalCode" placeholder="CEP" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-firestore.js"></script>
-    <script src="scripts.js"></script> <!-- Arquivo com scripts JavaScript personalizado -->
-
+    <script src="scripts.js"></script>
 </body>
 </html>
