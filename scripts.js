@@ -144,7 +144,7 @@ document.getElementById('homeIcon').addEventListener('click', function() {
 // Repita para os demais ícones (searchIcon, orderIcon, profileIcon)
 document.getElementById('orderIcon').addEventListener('click', function() {
     // Lógica para navegar para a página inicial
-    window.location.href = 'order.html';
+    window.location.href = 'orders.html';
 });
 
 document.getElementById('profileIcon').addEventListener('click', function() {
@@ -156,7 +156,7 @@ document.getElementById('profileIcon').addEventListener('click', function() {
 function handleFooterNavigation(iconName) {
     switch (iconName) {
         case 'orderIcon':
-            window.location.href = 'order.html';
+            window.location.href = 'orders.html';
             break;
         case 'profileIcon':
             window.location.href = 'profile.html';
