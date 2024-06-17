@@ -89,7 +89,7 @@ if (completeOrder) {
                     message += `\n*Total*: R$${total.toFixed(2)}`;
 
                     // Número de telefone para enviar o pedido via WhatsApp
-                    const phoneNumber = '+5511962964463'; // Substitua pelo número desejado
+                    const phoneNumber = '+5511962964464'; // Substitua pelo número desejado
 
                     // Formatar a mensagem e o número de telefone para URL
                     const encodedMessage = encodeURIComponent(message);
