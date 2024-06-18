@@ -64,57 +64,7 @@ if (orderForm) {
 if (completeOrder) {
     completeOrder.addEventListener('click', function() {
         if (order.length > 0) {
-<<<<<<< HEAD
             addressModal.style.display = 'flex'; // Exibe o modal de endereço
-=======
-            // Calcular o total do pedido
-            let total = order.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
-            // Obter o usuário autenticado
-            const user = firebase.auth().currentUser;
-
-            // Verificar se o usuário está autenticado
-            if (user) {
-                // Criar um novo documento na coleção "pedidos"
-                db.collection('pedidos').add({
-                    userId: user.uid,
-                    products: order,
-                    total: total,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                }).then(() => {
-                    // Montar a mensagem para enviar via WhatsApp
-                    let message = `🛒 *Meu Pedido*\n\n`;
-
-                    order.forEach((item, index) => {
-                        const subtotal = (item.price * item.quantity).toFixed(2);
-                        message += `${index + 1}. *${item.name}* - R$${item.price.toFixed(2)} x ${item.quantity} = R$${subtotal}\n`;
-                    });
-
-                    message += `\n*Total*: R$${total.toFixed(2)}`;
-
-                    // Número de telefone para enviar o pedido via WhatsApp
-                    const phoneNumber = '+5511962964464'; // Substitua pelo número desejado
-
-                    // Formatar a mensagem e o número de telefone para URL
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-
-                    // Abrir WhatsApp com a mensagem preenchida e o número de telefone
-                    window.open(whatsappURL, '_blank');
-
-                    // Limpar o pedido após enviar
-                    order = [];
-                    updateOrderList();
-                    alert('Pedido concluído com sucesso!');
-                }).catch((error) => {
-                    console.error('Erro ao criar pedido:', error);
-                    alert('Erro ao criar pedido. Por favor, tente novamente.');
-                });
-            } else {
-                console.error('Usuário não autenticado.');
-                alert('Você precisa estar logado para concluir o pedido.');
-            }
->>>>>>> 1e3c1b8c82c3e89c59999befd827c6c592a7435a
         } else {
             alert('Adicione produtos ao pedido antes de concluir.');
         }
